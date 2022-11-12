@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<nav id="sidebar">
+<nav id="sidebar" style="background-color: #00402b; border-right: 2px solid #00402b;">
     <!-- Sidebar Content -->
     <div class="sidebar-content">
         <!-- Side Header -->
@@ -25,9 +25,8 @@
 
                 <!-- Logo -->
                 <div class="content-header-item">
-                    <a class="link-effect font-w700" href="index.html">
-                        <i class="si si-fire text-primary"></i>
-                        <span class="font-size-xl text-dual-primary-dark">GVS </span><span class="font-size-xl text-primary"> Admin</span>
+                    <a class="link-effect font-w700">
+                        <span class="text-dual-primary-dark">PROJECT MANAGEMENT</span>
                     </a>
                 </div>
                 <!-- END Logo -->
@@ -37,27 +36,21 @@
         <!-- END Side Header -->
 
         <!-- Side User -->
-        <div class="content-side content-side-full content-side-user px-10 align-parent">
+        <div class="content-side content-side-full content-side-user p-1 align-parent" style="background-color: #00402b; height: auto;">
             <!-- Visible only in mini mode -->
             <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                <img class="img-avatar img-avatar32" src="{{ asset('asset/backend_asset/assets/media/avatars/avatar15.jpg')}}" alt="">
+                <img width="100%" src="/asset/backend_asset/logo.png" alt="">
             </div>
             <!-- END Visible only in mini mode -->
 
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
-                <a class="img-link" href="be_pages_generic_profile.html">
-                    <img class="img-avatar" src="{{ asset('asset/backend_asset/assets/media/avatars/avatar15.jpg')}}" alt="">
+                <a class="img-link">
+                    <img style="width: 100%;" src="/asset/backend_asset/logo.png" alt="">
                 </a>
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
-                        <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase" href="be_pages_generic_profile.html">{{Auth::user()->name}}</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <a class="link-effect text-dual-primary-dark" data-toggle="layout" data-action="sidebar_style_inverse_toggle" href="javascript:void(0)">
-                            <i class="si si-drop"></i>
-                        </a>
+                        <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase d-block">{{Auth::user()->name}}</a>
                     </li>
                 </ul>
             </div>
@@ -69,85 +62,16 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li>
-                    <a href="/admin"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                    <a href="/"><i class="fa fa-dashboard"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                </li>
+                @if(Auth::user()->role == 'admin')
+                <li>
+                    <a href="{{route('user.list')}}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Employees</span></a>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span class="sidebar-mini-hide">Page Kits</span></a>
-                    <ul>
-                        <li>
-                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Dashboards</span></a>
-                            <ul>
-                                <li>
-                                    <a href="be_pages_dashboard3.html"><span class="sidebar-mini-hide">Dashboard 3</span></a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_dashboard4.html"><span class="sidebar-mini-hide">Dashboard 4</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Hosting</span></a>
-                            <ul>
-                                <li>
-                                    <a href="be_pages_hosting_dashboard.html">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_hosting_emails.html">Emails</a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_hosting_account.html">Account</a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_hosting_support.html">Support</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">e-Learning</span></a>
-                            <ul>
-                                <li>
-                                    <a href="be_pages_elearning_courses.html">Courses</a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_elearning_course.html">Course</a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_elearning_lesson.html">Lesson</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Forum</span></a>
-                            <ul>
-                                <li>
-                                    <a href="be_pages_forum_categories.html">Categories</a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_forum_topics.html">Topics</a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_forum_discussion.html">Discussion</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <a href="{{route('client.list')}}"><i class="fa fa-client"></i><span class="sidebar-mini-hide">Client</span></a>
                 </li>
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">User Interface</span></li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-puzzle"></i><span class="sidebar-mini-hide">Blocks</span></a>
-                    <ul>
-                        <li>
-                            <a href="be_blocks.html">Styles</a>
-                        </li>
-                        <li>
-                            <a href="be_blocks_draggable.html">Draggable</a>
-                        </li>
-                        <li>
-                            <a href="be_blocks_api.html">API</a>
-                        </li>
-                    </ul>
-                </li>
+                @endif
             </ul>
         </div>
         <!-- END Side Navigation -->

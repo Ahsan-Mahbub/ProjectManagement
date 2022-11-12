@@ -35,11 +35,12 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="be_pages_dashboard.html" method="post" onsubmit="return false;">
+                <form role="form" action="{{route('profile.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group mb-15">
                         <label for="side-overlay-profile-name">Name</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="side-overlay-profile-name" name="side-overlay-profile-name" placeholder="Your Name.." value="{{Auth::user()->name}}">
+                            <input type="text" class="form-control" id="side-overlay-profile-name" name="name" placeholder="Your Name.." value="{{Auth::user()->name}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-user"></i>
@@ -50,7 +51,7 @@
                     <div class="form-group mb-15">
                         <label for="side-overlay-profile-email">Email</label>
                         <div class="input-group">
-                            <input type="email" class="form-control" id="side-overlay-profile-email" name="side-overlay-profile-email" placeholder="Your Email.." value="{{Auth::user()->email}}">
+                            <input type="email" class="form-control" id="side-overlay-profile-email" name="email" placeholder="Your Email.." value="{{Auth::user()->email}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-envelope"></i>
@@ -59,20 +60,20 @@
                         </div>
                     </div>
                     <div class="form-group mb-15">
-                        <label for="side-overlay-profile-password">New Password</label>
+                        <label for="side-overlay-profile-email">Phone Number</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="side-overlay-profile-password" name="side-overlay-profile-password" placeholder="New Password..">
+                            <input type="text" class="form-control" id="side-overlay-profile-email" name="phone" placeholder="Your Phone Number.." value="{{Auth::user()->phone}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">
-                                    <i class="fa fa-asterisk"></i>
+                                    <i class="fa fa-phone"></i>
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group mb-15">
-                        <label for="side-overlay-profile-password-confirm">Confirm New Password</label>
+                        <label for="side-overlay-profile-password">Change Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="side-overlay-profile-password-confirm" name="side-overlay-profile-password-confirm" placeholder="Confirm New Password..">
+                            <input type="password" class="form-control" id="side-overlay-profile-password" name="password" placeholder="Change Password..">
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-asterisk"></i>
@@ -80,6 +81,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <div class="col-6">
                             <button type="submit" class="btn btn-block btn-alt-primary">
