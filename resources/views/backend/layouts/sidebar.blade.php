@@ -66,10 +66,13 @@
                 </li>
                 @if(Auth::user()->role == 'admin')
                 <li>
-                    <a href="{{route('user.list')}}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Employees</span></a>
+                    <a href="{{route('user.list')}}"><i class="fa fa-user"></i><span class="sidebar-mini-hide">Employees</span></a>
                 </li>
                 <li>
-                    <a href="{{route('client.list')}}"><i class="fa fa-client"></i><span class="sidebar-mini-hide">Client</span></a>
+                    <a href="{{route('client.list')}}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Client</span></a>
+                </li>
+                <li>
+                    <a href="{{route('project.list')}}"><i class="fa fa-bookmark"></i><span class="sidebar-mini-hide">Project</span></a>
                 </li>
                 @endif
             </ul>

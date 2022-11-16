@@ -5,18 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Project extends Model
 {
     use HasFactory;
-    protected $table = 'clients';
     protected $primaryKey = "id";
+    protected $table = 'projects';
     protected $fillable = [
+        'client_id',
         'name',
-        'phone',
-        'email',
-        'address',
-        'status'
+        'amount',
+        'status',
+        'details',
     ];
+    public function client(){
+        return $this->belongsTo(Client::class, 'client_id');
+    }
     public function scopeActive($query)
     {
         return $query->where('status', 1);

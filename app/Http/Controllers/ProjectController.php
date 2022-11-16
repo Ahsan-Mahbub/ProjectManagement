@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::orderBy('id','desc')->get();
-        return view('backend.file.client.list', compact('clients'));
+        $projects = Project::orderBy('id','desc')->get();
+        return view('backend.file.project.list', compact('projects'));
     }
 
     /**
@@ -36,76 +37,75 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $client = new Client();
+        $project = new Project();
         $requested_data = $request->all();
-        $client->status = 1;
-        $save = $client->fill($requested_data)->save();
+        $project->status = 1;
+        $save = $project->fill($requested_data)->save();
         if($save){
-            return back()->with('message','Client Added Successfully');
+            return back()->with('message','Project Added Successfully');
         }else{
-            return back()->with('error','Client Added Failed!!');;
+            return back()->with('error','Project Added Failed!!');;
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function status($id)
     {
-        $status = Client::findOrFail($id);
+        $status = Project::findOrFail($id);
         if ($status->status == 0) {
             $status->status = 1;
         } else {
             $status->status = 0;
         }
         $status->save();
-        return redirect()->back()->with('message','Client Status Change Successfully');
+        return redirect()->back()->with('message','Project Status Change Successfully');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $lists = Client::findOrFail($id);
-        return response()->json($lists, 201);
+        $project = Project::findOrFail($id);
+        return view('backend.file.project.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $id = $request->id;
-        $update = Client::findOrFail($id);
+        $update = Project::findOrFail($id);
         $formData = $request->all();
         $updated = $update->fill($formData)->save();
         if($updated){
-            return redirect()->route('client.list')->with('message','Client Updated Successfully');
+            return redirect()->route('project.list')->with('message','Project Updated Successfully');
         }else{
-            return back()->with('error','Client Updated Failed');
+            return back()->with('error','Project Updated Failed');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $delete = Client::where('id', $id)->firstorfail()->delete();
-        return back()->with('message','Client Successfully Deleted');
+        $delete = Project::where('id', $id)->firstorfail()->delete();
+        return back()->with('message','Project Successfully Deleted');
     }
 }
