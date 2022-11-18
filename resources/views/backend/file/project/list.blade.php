@@ -81,7 +81,7 @@
                     	<form action="{{route('project.store')}}" method="post" enctype="multipart/form-data">
 	                    	@csrf
 	                       <div class="form-group row">
-	                       	<div class="pt-2 col-md-4">
+	                       		<div class="pt-2 col-md-4">
 	                            	<label for="editor">Client Name: <span class="text-danger">*</span></label>
 			                        <div>
 			                            <select class="form-control" name="client_id" required>

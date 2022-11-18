@@ -65,6 +65,7 @@
                     <a href="/"><i class="fa fa-dashboard"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                 </li>
                 @if(Auth::user()->role == 'admin')
+                <li class="nav-main-heading pt-2"><span class="sidebar-mini-visible">MM</span><span class="sidebar-mini-hidden">Main Module</span></li>
                 <li>
                     <a href="{{route('user.list')}}"><i class="fa fa-user"></i><span class="sidebar-mini-hide">Employees</span></a>
                 </li>
@@ -73,6 +74,18 @@
                 </li>
                 <li>
                     <a href="{{route('project.list')}}"><i class="fa fa-bookmark"></i><span class="sidebar-mini-hide">Project</span></a>
+                </li>
+                <li>
+                    <a href="{{route('task.list')}}"><i class="fa fa-tasks"></i><span class="sidebar-mini-hide">Task Assign</span></a>
+                </li>
+                <li class="nav-main-heading pt-2"><span class="sidebar-mini-visible">RS</span><span class="sidebar-mini-hidden">Report Section</span></li>
+                <li>
+                    <a href="#"><i class="fa fa-comments-o"></i><span class="sidebar-mini-hide">Task Review</span></a>
+                </li>
+                @endif
+                @if(Auth::user()->role == 'employee')
+                <li>
+                    <a href="{{route('employee.task.list')}}"><i class="fa fa-keyboard-o"></i><span class="sidebar-mini-hide">Assigning Task</span></a>
                 </li>
                 @endif
             </ul>

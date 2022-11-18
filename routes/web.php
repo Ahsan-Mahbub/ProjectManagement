@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskAssignController;
 /*
 |--------------------------------------------------------------------------
 | Backed Route
@@ -40,5 +41,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
         Route::post('update/{id}', [ProjectController::class, 'update'])->name('project.update');
         Route::delete('delete/{id}', [ProjectController::class, 'destroy'])->name('project.delete');
+    });
+    //Task Assign Route
+    Route::group(['prefix' => 'task'], function () {
+        Route::get('/list', [TaskAssignController::class, 'index'])->name('task.list');
+        Route::post('store', [TaskAssignController::class, 'store'])->name('task.store');
+        Route::delete('delete/{id}', [TaskAssignController::class, 'destroy'])->name('task.delete');
+    });
+});
+Route::group(['prefix' => 'employee', 'middleware' => 'auth'], function () {
+    //Task View Route
+    Route::group(['prefix' => 'task'], function () {
+        Route::get('/task-list', [TaskAssignController::class, 'taskList'])->name('employee.task.list');
+        Route::get('status/{id}', [TaskAssignController::class, 'status'])->name('task.status');
     });
 });
