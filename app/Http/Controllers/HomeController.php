@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\TaskAssign;
 use Auth;
 use Hash;
 Use Carbon\Carbon;
@@ -27,7 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('backend.layouts.dashboard');
+        $tasks = TaskAssign::where('user_id',Auth::user()->id)->orderBy('id','desc')->paginate(10);
+        return view('backend.layouts.dashboard', compact('tasks'));
     }
 
     public function store(Request $request){

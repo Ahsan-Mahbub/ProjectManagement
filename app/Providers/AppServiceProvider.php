@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Client;
+use App\Models\User;
+use App\Models\Project;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $clients = Client::active()->orderBy('id','desc')->get();
         view()->share('clients', $clients);
+
+        $employees = User::where('role','employee')->orderBy('id','desc')->get();
+        view()->share('employees', $employees);
+
+        $projects = Project::active()->orderBy('id','desc')->get();
+        view()->share('projects', $projects);
     }
 }
