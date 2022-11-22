@@ -85,6 +85,10 @@
               font-size: 16px;
               font-weight: bold;
           }
+          a.block.block-link-shadow:hover {
+              box-shadow: 0 0 36px #0f8757;
+              opacity: 1;
+          }
       </style>
       @yield('css')
     </head>

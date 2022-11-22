@@ -28,7 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tasks = TaskAssign::where('user_id',Auth::user()->id)->orderBy('id','desc')->paginate(10);
+        if(Auth::user()->role == 'admin'){
+            $tasks = TaskAssign::orderBy('id','desc')->paginate(10);
+        }else{
+            $tasks = TaskAssign::where('user_id',Auth::user()->id)->orderBy('id','desc')->paginate(10);
+        }
         return view('backend.layouts.dashboard', compact('tasks'));
     }
 
