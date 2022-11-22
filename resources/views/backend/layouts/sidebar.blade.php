@@ -78,10 +78,6 @@
                 <li>
                     <a href="{{route('task.list')}}"><i class="fa fa-tasks"></i><span class="sidebar-mini-hide">Task Assign</span></a>
                 </li>
-                <li class="nav-main-heading pt-2"><span class="sidebar-mini-visible">RS</span><span class="sidebar-mini-hidden">Report Section</span></li>
-                <li>
-                    <a href="#"><i class="fa fa-comments-o"></i><span class="sidebar-mini-hide">Task Review</span></a>
-                </li>
                 @endif
                 @if(Auth::user()->role == 'employee')
                 <li>
